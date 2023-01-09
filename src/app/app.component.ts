@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-book';
+  selectedView = 'shopping-list';
+
+  onNavigate(view: string) {
+    if(view === this.selectedView) return;
+    this.selectedView = view;
+  }
 }
