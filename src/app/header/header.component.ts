@@ -7,13 +7,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   collapsed = true;
-  @Output() selectedViewEvent = new EventEmitter<string>();
-  selectedView = "recipes";
-
-  onSelect(view: string)
-  {
-    if(view === this.selectedView) return;
-    this.selectedView = view;
-    this.selectedViewEvent.emit(view);
-  }
 }

@@ -3,7 +3,9 @@ import { Recipe } from "../recipes/recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "./shopping-list.service";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class RecipeService {
     private recipes: Recipe[] = [
         new Recipe(
@@ -37,5 +39,9 @@ export class RecipeService {
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
+    }
+
+    getRecipe(index: number): Recipe {
+        return this.recipes[index];
     }
 }
