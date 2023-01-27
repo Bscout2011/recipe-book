@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form #ingredientForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
@@ -8,7 +8,13 @@
             type="text" 
             id="name" 
             class="form-control"
-            #nameInput>
+            name="name"
+            required
+            ngModel
+            #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+              Ingredient name is required.
+            </div>
         </div>
         <div class="col-sm-2">
           <label for="amount">Amount</label>
@@ -16,14 +22,24 @@
             type="number" 
             id="amount" 
             class="form-control"
-            #amountInput>
+            name="amount"
+            required
+            [pattern]="'^[1-9][0-9]*'"
+            ngModel
+            #amount="ngModel">
+            <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">Enter a positive number.</div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button type="button" class="btn btn-success" (click)="add()">Add</button>
-          <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
-          <button type="button" class="btn btn-primary" (click)="clear()">Clear</button>
+          <button type="button" class="btn btn-success" type="submit" [disabled]="!ingredientForm.form.valid">
+            {{ editMode ? "Update" : "Add" }}
+          </button>
+          <button type="button" class="btn btn-danger" 
+            (click)="onDelete()" *ngIf="editMode">
+            Delete
+          </button>
+          <button type="button" class="btn btn-primary" (click)="onClear()">Clear</button>
         </div>
       </div>
     </form>

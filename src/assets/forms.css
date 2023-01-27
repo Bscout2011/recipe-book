@@ -1,0 +1,11 @@
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid green;
+}
+
+.ng-invalid.ng-untouched[required] {
+    border-left: 5px solid orange;
+}
+
+.ng-invalid.ng-touched:not(form, .row, [formArrayName]) {
+    border-left: 5px solid red;
+}
