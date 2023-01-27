@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRountingModule } from './app-routing.module';
 
@@ -13,9 +14,9 @@ import { RecipeItemComponent } from './recipes/recipe-item/recipe-item.component
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeResolver } from './recipes/recipe-resolver.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { PositiveNumberValidatorDirective } from './shared/positve-number.directive';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,17 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingListEditComponent,
-    DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    DropdownDirective,
+    PositiveNumberValidatorDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRountingModule
+    ReactiveFormsModule,
+    AppRountingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

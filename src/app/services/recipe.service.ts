@@ -10,30 +10,35 @@ import { ShoppingListService } from "./shopping-list.service";
 })
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
-
-    private recipes: Recipe[] = [
-        new Recipe(
-            "Cake",
-            "A delicious, sweet cake.",
-            "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
-            [
-                new Ingredient('flour', 2),
-                new Ingredient('sugar', 5),
-                new Ingredient('egg', 1)
-            ]
-        ),
-        new Recipe(
-            "Burrito",
-            "Flavorful, spicy burrito.",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Burrito.JPG/640px-Burrito.JPG",
-            [
-                new Ingredient("chicken", 4),
-                new Ingredient("tortilla", 1)
-            ]
-        )
-    ]
+    private recipes: Recipe[] = [];
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         "Cake",
+    //         "A delicious, sweet cake.",
+    //         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
+    //         [
+    //             new Ingredient('flour', 2),
+    //             new Ingredient('sugar', 5),
+    //             new Ingredient('egg', 1)
+    //         ]
+    //     ),
+    //     new Recipe(
+    //         "Burrito",
+    //         "Flavorful, spicy burrito.",
+    //         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Burrito.JPG/640px-Burrito.JPG",
+    //         [
+    //             new Ingredient("chicken", 4),
+    //             new Ingredient("tortilla", 1)
+    //         ]
+    //     )
+    // ]
 
     constructor(private slService: ShoppingListService) {}
+
+    setRecipes(recipes: Recipe[]) {
+      this.recipes = recipes;
+      this.recipesChanged.next(recipes);
+    }
 
     getRecipes() {
         return this.recipes.slice();  // returns a copy of the recipes array

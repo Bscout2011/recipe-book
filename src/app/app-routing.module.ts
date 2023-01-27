@@ -16,8 +16,8 @@ const appRoutes: Routes = [
     { path: 'recipes', component: RecipesComponent, children: [
         { path: '', component: RecipeStartComponent },
         { path: 'new', component: RecipeEditComponent },
-        { path: ':id', component: RecipeDetailComponent },  // must come after any explicit routes like 'new'
-        { path: ':id/edit', component: RecipeEditComponent },
+        { path: ':id', component: RecipeDetailComponent, resolve: [RecipeResolver] },  // must come after any explicit routes like 'new'
+        { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipeResolver] },
     ]},
     { path: 'shopping-list', component: ShoppingListComponent, children: [
         { path: ':id', component: ShoppingListEditComponent}
