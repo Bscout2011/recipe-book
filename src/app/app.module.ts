@@ -7,40 +7,15 @@ import { AppRountingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-list/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { PositiveNumberValidatorDirective } from './shared/positve-number.directive';
-import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { AlertComponent } from './shared/alert/alert.component';
-import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { LoggingService } from './logging.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    DropdownDirective,
-    PositiveNumberValidatorDirective,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -48,9 +23,14 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
     ReactiveFormsModule,
     AppRountingModule,
     HttpClientModule,
+    // RecipesModule,
+    SharedModule,
+    // ShoppingListModule,  
+    CoreModule,
+    // AuthModule,  // do not import lazy loaded module
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    // LoggingService
   ],
   bootstrap: [AppComponent]
 })
